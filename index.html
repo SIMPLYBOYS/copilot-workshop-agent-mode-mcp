@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="一個簡潔、離線可用的待辦清單。">
+  <title>晨光清單｜待辦事項</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <section class="todo-card" aria-labelledby="page-title">
+      <header class="app-header">
+        <div>
+          <p class="eyebrow">今日專注</p>
+          <h1 id="page-title">晨光清單</h1>
+          <p class="subtitle">把今天重要的事，一件一件完成。</p>
+        </div>
+        <span class="date-mark" aria-hidden="true">✦</span>
+      </header>
+
+      <form class="todo-form" id="todo-form">
+        <label class="sr-only" for="todo-input">新增待辦事項</label>
+        <input id="todo-input" name="todo" type="text" placeholder="接下來要完成什麼？" autocomplete="off" maxlength="120">
+        <button type="submit">新增</button>
+      </form>
+
+      <div class="list-heading">
+        <span>我的清單</span>
+        <span class="task-total" id="task-total">0 項</span>
+      </div>
+
+      <ul class="todo-list" id="todo-list" aria-live="polite"></ul>
+
+      <div class="empty-state" id="empty-state">
+        <span class="empty-icon" aria-hidden="true">☼</span>
+        <p>還沒有任何待辦事項,新增一個吧!</p>
+      </div>
+
+      <footer class="app-footer">
+        <span id="remaining-count">未完成:0 項</span>
+        <button class="clear-button" id="clear-completed" type="button" disabled>清除已完成</button>
+      </footer>
+    </section>
+    <p class="offline-note"><span aria-hidden="true">●</span> 資料只儲存在這個瀏覽器</p>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
