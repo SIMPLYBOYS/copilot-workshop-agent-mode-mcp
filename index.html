@@ -16,7 +16,10 @@
           <h1 id="page-title">晨光清單</h1>
           <p class="subtitle">把今天重要的事，一件一件完成。</p>
         </div>
-        <span class="date-mark" aria-hidden="true">✦</span>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="切換深色模式">
+          <span class="theme-icon" aria-hidden="true">🌙</span>
+          <span class="theme-label">深色模式</span>
+        </button>
       </header>
 
       <form class="todo-form" id="todo-form">
@@ -24,6 +27,12 @@
         <input id="todo-input" name="todo" type="text" placeholder="接下來要完成什麼？" autocomplete="off" maxlength="120">
         <button type="submit">新增</button>
       </form>
+
+      <div class="filter-bar" role="group" aria-label="篩選待辦事項">
+        <button class="filter-button active" type="button" data-filter="all" aria-pressed="true">全部</button>
+        <button class="filter-button" type="button" data-filter="active" aria-pressed="false">未完成</button>
+        <button class="filter-button" type="button" data-filter="completed" aria-pressed="false">已完成</button>
+      </div>
 
       <div class="list-heading">
         <span>我的清單</span>
@@ -34,7 +43,7 @@
 
       <div class="empty-state" id="empty-state">
         <span class="empty-icon" aria-hidden="true">☼</span>
-        <p>還沒有任何待辦事項,新增一個吧!</p>
+        <p id="empty-message">還沒有任何待辦事項,新增一個吧!</p>
       </div>
 
       <footer class="app-footer">

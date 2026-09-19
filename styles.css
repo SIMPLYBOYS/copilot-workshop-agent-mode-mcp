@@ -3,13 +3,29 @@
   --muted: #718078;
   --paper: #fffdf8;
   --canvas: #f4f1e9;
+  --input: #f7f6ef;
   --line: #e5e4d8;
   --accent: #e9795f;
   --accent-deep: #c7544c;
+  --accent-soft: #fff0eb;
   --mint: #dcebe0;
   --shadow: 0 24px 60px rgba(42, 61, 51, 0.12);
   --display-font: 'Songti TC', 'Noto Serif CJK TC', serif;
   --body-font: 'PingFang TC', 'Helvetica Neue', sans-serif;
+}
+
+body.dark-mode {
+  --ink: #f4f1e9;
+  --muted: #a8b8ae;
+  --paper: #26352f;
+  --canvas: #17211e;
+  --input: #1d2b26;
+  --line: #3a4b43;
+  --accent: #f28d72;
+  --accent-deep: #ffad92;
+  --accent-soft: #49302d;
+  --mint: #29443a;
+  --shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
 }
 
 * {
@@ -23,7 +39,8 @@ body {
   color: var(--ink);
   font-family: var(--body-font);
   background: var(--canvas);
-  background-image: radial-gradient(circle at 10% 5%, rgba(220, 235, 224, 0.8), transparent 28%), radial-gradient(circle at 90% 95%, rgba(233, 121, 95, 0.13), transparent 25%);
+  background-image: radial-gradient(circle at 10% 5%, var(--mint), transparent 28%), radial-gradient(circle at 90% 95%, var(--accent-soft), transparent 25%);
+  transition: color 180ms ease, background-color 180ms ease;
 }
 
 button,
@@ -45,8 +62,8 @@ button {
   max-width: 520px;
   margin: 0 auto;
   padding: clamp(24px, 5vw, 42px);
-  background: rgba(255, 253, 248, 0.94);
-  border: 1px solid rgba(255, 255, 255, 0.8);
+  background: var(--paper);
+  border: 1px solid var(--line);
   border-radius: 24px;
   box-shadow: var(--shadow);
   animation: rise-in 600ms ease both;
@@ -82,17 +99,25 @@ h1 {
   font-size: 0.95rem;
 }
 
-.date-mark {
-  display: grid;
-  flex: 0 0 44px;
-  width: 44px;
-  height: 44px;
-  color: var(--paper);
-  font-size: 1.3rem;
-  place-items: center;
-  background: var(--ink);
-  border-radius: 50%;
-  transform: rotate(15deg);
+.theme-toggle {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 10px;
+  color: var(--ink);
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: var(--mint);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  transition: color 180ms ease, background 180ms ease, transform 180ms ease;
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus-visible {
+  background: var(--accent-soft);
+  transform: translateY(-1px);
 }
 
 .todo-form {
@@ -106,7 +131,7 @@ h1 {
   flex: 1;
   padding: 14px 16px;
   color: var(--ink);
-  background: #f7f6ef;
+  background: var(--input);
   border: 1px solid transparent;
   border-radius: 12px;
   outline: none;
@@ -131,6 +156,33 @@ h1 {
   border: 0;
   border-radius: 12px;
   transition: background 180ms ease, transform 180ms ease;
+}
+
+.filter-bar {
+  display: flex;
+  gap: 8px;
+  margin: -14px 0 26px;
+  padding: 4px;
+  background: var(--input);
+  border-radius: 10px;
+}
+
+.filter-button {
+  flex: 1;
+  padding: 8px 6px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+  background: transparent;
+  border: 0;
+  border-radius: 7px;
+}
+
+.filter-button:hover,
+.filter-button.active {
+  color: var(--ink);
+  background: var(--paper);
+  box-shadow: 0 2px 8px rgba(42, 61, 51, 0.08);
 }
 
 .todo-form button:hover {
@@ -223,7 +275,7 @@ h1 {
 .delete-button:hover,
 .delete-button:focus-visible {
   color: var(--accent-deep);
-  background: #fff0eb;
+  background: var(--accent-soft);
 }
 
 .empty-state {
@@ -315,6 +367,33 @@ h1 {
 
   .todo-form button {
     padding: 0 15px;
+  }
+
+  .theme-label {
+    display: none;
+  }
+
+  .theme-toggle {
+    width: 38px;
+    height: 38px;
+    justify-content: center;
+    padding: 0;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  body:not(.theme-choice-made) {
+    --ink: #f4f1e9;
+    --muted: #a8b8ae;
+    --paper: #26352f;
+    --canvas: #17211e;
+    --input: #1d2b26;
+    --line: #3a4b43;
+    --accent: #f28d72;
+    --accent-deep: #ffad92;
+    --accent-soft: #49302d;
+    --mint: #29443a;
+    --shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
   }
 }
 
